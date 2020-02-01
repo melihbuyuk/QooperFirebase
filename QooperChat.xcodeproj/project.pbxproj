@@ -22,6 +22,9 @@
 		D47E9B7023E5DBC50044483E /* Room.swift in Sources */ = {isa = PBXBuildFile; fileRef = D47E9B6F23E5DBC50044483E /* Room.swift */; };
 		D4A666D223E60FCD00A8DE06 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A666D123E60FCD00A8DE06 /* ChatViewController.swift */; };
 		D4A666D423E6261200A8DE06 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A666D323E6261200A8DE06 /* ChatCell.swift */; };
+		D4A666D623E6383F00A8DE06 /* UIImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A666D523E6383F00A8DE06 /* UIImageView.swift */; };
+		D4A666D823E6392600A8DE06 /* UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A666D723E6392600A8DE06 /* UITextField.swift */; };
+		D4A666DA23E63C9000A8DE06 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4A666D923E63C9000A8DE06 /* ImagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +47,9 @@
 		D47E9B6F23E5DBC50044483E /* Room.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Room.swift; sourceTree = "<group>"; };
 		D4A666D123E60FCD00A8DE06 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
 		D4A666D323E6261200A8DE06 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
+		D4A666D523E6383F00A8DE06 /* UIImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImageView.swift; sourceTree = "<group>"; };
+		D4A666D723E6392600A8DE06 /* UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextField.swift; sourceTree = "<group>"; };
+		D4A666D923E63C9000A8DE06 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -151,6 +157,7 @@
 			children = (
 				D410FC2D23E5E8BC00B8A8BD /* RoomCell.swift */,
 				D4A666D323E6261200A8DE06 /* ChatCell.swift */,
+				D4A666D923E63C9000A8DE06 /* ImagePicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -159,6 +166,8 @@
 			isa = PBXGroup;
 			children = (
 				D47E9B6D23E5D7BF0044483E /* Storyboard.swift */,
+				D4A666D523E6383F00A8DE06 /* UIImageView.swift */,
+				D4A666D723E6392600A8DE06 /* UITextField.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -279,16 +288,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D4A666DA23E63C9000A8DE06 /* ImagePicker.swift in Sources */,
 				D47E9B6423E59BFC0044483E /* LoginViewController.swift in Sources */,
 				D47E9B6A23E5CE420044483E /* Chat.swift in Sources */,
 				D47E9B7023E5DBC50044483E /* Room.swift in Sources */,
 				D4A666D423E6261200A8DE06 /* ChatCell.swift in Sources */,
 				D47E9B6C23E5D4A80044483E /* ChatRoomViewController.swift in Sources */,
 				D47E9B4A23E59A880044483E /* AppDelegate.swift in Sources */,
+				D4A666D623E6383F00A8DE06 /* UIImageView.swift in Sources */,
 				D47E9B6E23E5D7BF0044483E /* Storyboard.swift in Sources */,
 				D410FC2E23E5E8BC00B8A8BD /* RoomCell.swift in Sources */,
 				D4A666D223E60FCD00A8DE06 /* ChatViewController.swift in Sources */,
 				D47E9B6823E5CDBE0044483E /* User.swift in Sources */,
+				D4A666D823E6392600A8DE06 /* UITextField.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

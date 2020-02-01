@@ -34,8 +34,9 @@ class ChatViewController: UIViewController, Instantiable, UITableViewDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.tableFooterView = UIView(frame: .zero)
         
-        messageInput.layer.borderColor = UIColor.black.cgColor
+        messageInput.layer.borderColor = UIColor.lightGray.cgColor
         messageInput.layer.borderWidth = 1.0
         
         observeMessages()
@@ -58,7 +59,6 @@ class ChatViewController: UIViewController, Instantiable, UITableViewDelegate, U
         })
     }
     
-    
     @IBAction func senderButton(_ sender: Any) {
         let itemRef = chatRef.childByAutoId()
         let messageItem = [
@@ -68,6 +68,8 @@ class ChatViewController: UIViewController, Instantiable, UITableViewDelegate, U
             ]
         
         itemRef.setValue(messageItem)
+        
+        messageInput.text = nil
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {

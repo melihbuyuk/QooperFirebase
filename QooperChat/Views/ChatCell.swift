@@ -12,10 +12,11 @@ class ChatCell: UITableViewCell {
 
     @IBOutlet weak var senderName: UILabel!
     @IBOutlet weak var message: UILabel!
+    @IBOutlet weak var avatarView: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        avatarView.maskCircle()
     }
     
     func chatSetup(chat: Chat) {

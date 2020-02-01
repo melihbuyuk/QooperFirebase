@@ -34,6 +34,7 @@ class ChatRoomViewController: UIViewController, Instantiable, UITableViewDelegat
         self.navigationItem.hidesBackButton = true
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(createChannelAlert))
         self.title = "Chat Rooms"
+        self.tableView.tableFooterView = UIView(frame: .zero)
         observeChannels()
     }
     
