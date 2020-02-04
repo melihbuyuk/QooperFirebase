@@ -14,7 +14,10 @@ class ChatViewController: UIViewController, Instantiable, UITableViewDelegate, U
     @IBOutlet weak var messageInput: UITextView!
     
     @IBOutlet weak var tableView: UITableView!
+
+    @IBOutlet weak var keyboardSafeAreaBottomConstraints: NSLayoutConstraint!
     
+
     var senderName: String!
     var roomRef: DatabaseReference?
     var room: Room? {
@@ -38,7 +41,12 @@ class ChatViewController: UIViewController, Instantiable, UITableViewDelegate, U
         
         messageInput.layer.borderColor = UIColor.lightGray.cgColor
         messageInput.layer.borderWidth = 1.0
-        
+
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(self.keyboardNotification(notification:)),
+                                               name: UIResponder.keyboardWillChangeFrameNotification,
+                                               object: nil)
+
         observeMessages()
     }
     
@@ -53,10 +61,48 @@ class ChatViewController: UIViewController, Instantiable, UITableViewDelegate, U
                let name = message["senderName"] as String?,
                let text = message["text"] as String?, text.count > 0 {
                 self.chat.append(Chat(senderId: id, senderName: name, text: text))
+
                 self.tableView.reloadData()
             }
             
         })
+    }
+
+    func updateLastRow() {
+        DispatchQueue.main.async {
+            let lastIndexPath = IndexPath(row: self.chat.count - 1, section: 0)
+
+            self.tableView.beginUpdates()
+            self.tableView.insertRows(at: [lastIndexPath], with: .none)
+            self.tableView.endUpdates()
+
+            self.tableView.layoutIfNeeded()
+
+            self.tableView.scrollToRow(at: lastIndexPath,
+                                       at: UITableView.ScrollPosition.bottom,
+                                       animated: true)
+        }
+    }
+
+    @objc func keyboardNotification(notification: NSNotification) {
+        if let userInfo = notification.userInfo {
+            let endFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+            let endFrameY = endFrame?.origin.y ?? 0
+            let duration:TimeInterval = (userInfo[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+            let animationCurveRawNSN = userInfo[UIResponder.keyboardAnimationCurveUserInfoKey] as? NSNumber
+            let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIView.AnimationOptions.curveEaseInOut.rawValue
+            let animationCurve:UIView.AnimationOptions = UIView.AnimationOptions(rawValue: animationCurveRaw)
+            if endFrameY >= UIScreen.main.bounds.size.height {
+                self.keyboardSafeAreaBottomConstraints?.constant = 0.0
+            } else {
+                self.keyboardSafeAreaBottomConstraints?.constant = endFrame?.size.height ?? 0.0
+            }
+            UIView.animate(withDuration: duration,
+                                       delay: TimeInterval(0),
+                                       options: animationCurve,
+                                       animations: { self.view.layoutIfNeeded() },
+                                       completion: nil)
+        }
     }
     
     @IBAction func senderButton(_ sender: Any) {
@@ -70,6 +116,7 @@ class ChatViewController: UIViewController, Instantiable, UITableViewDelegate, U
         itemRef.setValue(messageItem)
         
         messageInput.text = nil
+        self.isEditing = false
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
